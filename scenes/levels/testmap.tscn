@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=4 uid="uid://dtgbudha7xh8c"]
+[gd_scene load_steps=7 format=4 uid="uid://dtgbudha7xh8c"]
 
 [ext_resource type="Script" uid="uid://be2qd061fgspv" path="res://scripts/gameplay/levels/Level.cs" id="1_2idws"]
 [ext_resource type="TileSet" uid="uid://c2qyh6oivdtqe" path="res://resources/tilesets/level.tres" id="1_a8nim"]
 [ext_resource type="PackedScene" uid="uid://d4i5uqibksylp" path="res://scenes/levels/scene_trigger.tscn" id="3_p8a7t"]
 [ext_resource type="PackedScene" uid="uid://bko4egolpo7l7" path="res://scenes/levels/spawn_point.tscn" id="4_ebcnb"]
 [ext_resource type="PackedScene" uid="uid://dttngonli2pum" path="res://scenes/characters/player.tscn" id="5_ebcnb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebcnb"]
+size = Vector2(20, 229)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2idws")
@@ -60,12 +63,19 @@ tile_set = ExtResource("1_a8nim")
 [node name="Boundaries" type="Node2D" parent="."]
 position = Vector2(-3, 0)
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Boundaries"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/StaticBody2D"]
+position = Vector2(351, 206)
+shape = SubResource("RectangleShape2D_ebcnb")
+
 [node name="SceneTriggers" type="Node2D" parent="."]
 
 [node name="SceneTrigger" parent="SceneTriggers" instance=ExtResource("3_p8a7t")]
-position = Vector2(198, 8)
+position = Vector2(142, 52)
 
 [node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2(0, 1)
 
 [node name="SpawnPoint" parent="SpawnPoints" instance=ExtResource("4_ebcnb")]
 position = Vector2(64, 160)
